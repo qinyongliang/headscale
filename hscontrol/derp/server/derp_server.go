@@ -59,12 +59,18 @@ func (d *DERPServer) GenerateRegion() (tailcfg.DERPRegion, error) {
 	var port int
 	host, portStr, err := net.SplitHostPort(serverURL.Host)
 	if err != nil {
-		if serverURL.Scheme == "https" {
-			host = serverURL.Host
-			port = 443
+		host = serverURL.Host
+		if portStr != '' {
+			port, err = strconv.Atoi(portStr)
+			if err != nil {
+				return tailcfg.DERPRegion{}, err
+			}
 		} else {
-			host = serverURL.Host
-			port = 80
+			if serverURL.Scheme == "https" {
+				port = 443
+			} else {
+				port = 80
+			}
 		}
 	} else {
 		port, err = strconv.Atoi(portStr)
