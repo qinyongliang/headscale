@@ -60,7 +60,7 @@ func (d *DERPServer) GenerateRegion() (tailcfg.DERPRegion, error) {
 	host, portStr, err := net.SplitHostPort(serverURL.Host)
 	if err != nil {
 		host = serverURL.Host
-		if portStr != '' {
+		if portStr != "" {
 			port, err = strconv.Atoi(portStr)
 			if err != nil {
 				return tailcfg.DERPRegion{}, err
