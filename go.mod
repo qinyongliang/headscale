@@ -4,6 +4,7 @@ go 1.22
 
 toolchain go1.22.0
 
+
 require (
 	github.com/AlecAivazis/survey/v2 v2.3.7
 	github.com/coreos/go-oidc/v3 v3.9.0
